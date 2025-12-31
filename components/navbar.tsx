@@ -16,7 +16,7 @@ export function Navbar() {
             MyLogo
           </Link>
 
-          <div className="hidden md:flex items-center gap-3 text-sm font-medium">
+          <div className="hidden md:flex items-center gap-3 text-sm font-semibold">
             <Link
               href="/features"
               className="px-3 py-2 rounded-md hover:bg-foreground/10 transition-colors duration-300"
