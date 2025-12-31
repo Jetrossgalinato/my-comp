@@ -16,19 +16,22 @@ export function Navbar() {
             MyLogo
           </Link>
 
-          <div className="hidden md:flex items-center gap-6 text-sm font-medium">
+          <div className="hidden md:flex items-center gap-3 text-sm font-medium">
             <Link
               href="/features"
-              className="hover:opacity-70 transition-opacity"
+              className="px-3 py-2 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
               Features
             </Link>
-            <Link href="/about" className="hover:opacity-70 transition-opacity">
+            <Link
+              href="/about"
+              className="px-3 py-2 rounded-md hover:bg-foreground/10 transition-colors duration-300"
+            >
               About
             </Link>
             <Link
               href="/contact"
-              className="hover:opacity-70 transition-opacity"
+              className="px-3 py-2 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
               Contact
             </Link>
