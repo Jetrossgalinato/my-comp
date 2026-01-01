@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
+import { Search } from "lucide-react";
 
 export function Navbar() {
   return (
@@ -39,6 +40,15 @@ export function Navbar() {
         </div>
         {/* Theme Toggle and CTA */}
         <div className="flex items-center gap-4 mr-4">
+          {/* Search Bar */}
+          <div className="relative hidden sm:block">
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="Search components..."
+              className="pl-9 pr-4 py-2 bg-foreground/1 border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-foreground/20 w-40 md:w-64 transition-all"
+            />
+          </div>
           <ThemeToggle />
           <button className="px-4 py-2 bg-foreground text-background rounded-md hover:opacity-90 transition-opacity text-sm font-medium">
             Get Started
