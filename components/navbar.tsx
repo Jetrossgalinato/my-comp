@@ -49,7 +49,12 @@ export function Navbar() {
               className="pl-9 pr-4 py-2 bg-foreground/1 border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-foreground/20 w-40 md:w-64 transition-all"
             />
           </div>
+
+          <div className="h-6 w-[1px] bg-foreground/20" />
+
           <ThemeToggle />
+
+          <div className="h-6 w-[1px] bg-foreground/20" />
           <button className="px-4 py-2 bg-foreground text-background rounded-md hover:opacity-90 transition-opacity text-sm font-medium">
             Get Started
           </button>
