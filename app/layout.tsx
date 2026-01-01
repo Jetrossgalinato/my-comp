@@ -56,8 +56,9 @@ const geistSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "myComp",
-  description: "A component library for React and Next.js",
+  title: "Professional Web Design, Simplified",
+  description:
+    "Explore our library of premium, responsive layouts. Customize with ease and launch professional projects without writing any CSS.",
 };
 
 export default function RootLayout({
