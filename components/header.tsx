@@ -1,5 +1,6 @@
 import { Search } from "lucide-react";
 import { TypographyH1, TypographyLead, TypographySmall } from "./typography";
+import Link from "next/link";
 
 export function Header() {
   return (
@@ -21,7 +22,9 @@ export function Header() {
           </TypographySmall>
         </button>
         <button className="text-foreground px-3 py-1 rounded-md hover:bg-foreground/5 cursor-pointer transition-colors duration-300">
-          <TypographySmall>View Components</TypographySmall>
+          <Link href={"/components-page"}>
+            <TypographySmall>View Components</TypographySmall>
+          </Link>
         </button>
       </div>
     </div>
