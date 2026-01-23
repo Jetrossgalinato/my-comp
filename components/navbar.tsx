@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 import { Search, Power } from "lucide-react";
+import { TypographySmall } from "./typography";
 
 export function Navbar() {
   return (
@@ -17,24 +18,24 @@ export function Navbar() {
             <Power className="inline-block h-4 w-4 mb-1" />
           </Link>
 
-          <div className="hidden md:flex items-center gap-2 text-sm font-semibold">
+          <div className="hidden md:flex items-center gap-2">
             <Link
               href="/features"
               className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
-              Features
+              <TypographySmall>Features</TypographySmall>
             </Link>
             <Link
               href="/about"
               className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
-              About
+              <TypographySmall>About</TypographySmall>
             </Link>
             <Link
               href="/contact"
               className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
-              Contact
+              <TypographySmall>Contact</TypographySmall>
             </Link>
           </div>
         </div>
@@ -55,8 +56,8 @@ export function Navbar() {
           <ThemeToggle />
 
           <div className="h-6 w-[1px] bg-foreground/20" />
-          <button className="px-3 py-1 bg-foreground text-background rounded-md hover:opacity-90 transition-opacity text-sm font-medium">
-            Get Started
+          <button className="px-3 py-1 bg-foreground text-background rounded-md hover:opacity-90 transition-opacity">
+            <TypographySmall>Get Started</TypographySmall>
           </button>
         </div>
       </div>
