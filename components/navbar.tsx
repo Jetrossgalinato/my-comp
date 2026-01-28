@@ -24,25 +24,29 @@ export function Navbar() {
               href="/"
               className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
-              <TypographySmall>Home</TypographySmall>
+              <TypographySmall className="font-semibold">Home</TypographySmall>
             </Link>
             <Link
               href="/features"
               className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
-              <TypographySmall>Features</TypographySmall>
+              <TypographySmall className="font-semibold">
+                Features
+              </TypographySmall>
             </Link>
             <Link
               href="/about"
               className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
-              <TypographySmall>About</TypographySmall>
+              <TypographySmall className="font-semibold">About</TypographySmall>
             </Link>
             <Link
               href="/contact"
               className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
-              <TypographySmall>Contact</TypographySmall>
+              <TypographySmall className="font-semibold">
+                Contact
+              </TypographySmall>
             </Link>
           </div>
         </div>

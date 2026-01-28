@@ -25,7 +25,7 @@ export function TypographyH2({
 }) {
   return (
     <h2
-      className={`scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight text-foreground/90 first:mt-0 ${className}`}
+      className={`scroll-m-20 pb-2 text-3xl font-semibold tracking-tight text-foreground/90 first:mt-0 ${className}`}
     >
       {children}
     </h2>
