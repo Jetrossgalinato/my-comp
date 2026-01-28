@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/navbar";
 import {
   TypographyH2,
-  TypographyLarge,
+  TypographyMedium,
   TypographyMuted,
 } from "@/components/typography";
 import Link from "next/link";
@@ -79,9 +79,9 @@ export default function ComponentsPage() {
                 .replace(/\s+/g, "-")}`}
               className="group flex items-center p-2 -ml-2 rounded-md transition duration-200"
             >
-              <TypographyLarge className="text-foreground group-hover:text-foreground group-hover:underline underline-offset-4 transition-all duration-200">
+              <TypographyMedium className="text-foreground group-hover:text-foreground group-hover:underline underline-offset-4 transition-all duration-200">
                 {component}
-              </TypographyLarge>
+              </TypographyMedium>
             </Link>
           ))}
         </div>

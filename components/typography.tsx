@@ -156,6 +156,20 @@ export function TypographyLarge({
   );
 }
 
+export function TypographyMedium({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={`text-md font-medium text-foreground/90 ${className}`}>
+      {children}
+    </div>
+  );
+}
+
 export function TypographySmall({
   children,
   className,
