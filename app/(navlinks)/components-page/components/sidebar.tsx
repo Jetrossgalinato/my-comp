@@ -10,7 +10,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-48 fixed top-16 bottom-0 overflow-y-auto">
+    <aside className="w-48 fixed top-16 bottom-0 overflow-y-auto scrollbar-hide">
       <div className="h-full mt-8 pl-6 py-6 pr-6 lg:py-8">
         <TypographySmall className="font-semibold mb-4 px-2">
           Components
