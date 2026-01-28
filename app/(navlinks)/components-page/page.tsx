@@ -1,11 +1,48 @@
 import { Navbar } from "@/components/navbar";
-import { TypographyH2 } from "@/components/typography";
+import { Sidebar } from "./components/sidebar";
+import {
+  TypographyH2,
+  TypographyMedium,
+  TypographyMuted,
+} from "@/components/typography";
+import Link from "next/link";
+import { shadcnComponents } from "./utils/componentList";
+
 export default function ComponentsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground gap-4 transition-colors duration-300">
+    <div className="relative flex flex-col min-h-screen bg-background text-foreground transition-colors duration-300">
       <Navbar />
-      <div className="max-w-2xl mx-auto mt-10">
-        <TypographyH2>Components</TypographyH2>
+      <div className="flex flex-1 items-start">
+        <Sidebar />
+
+        <main className="flex-1 w-full ml-48">
+          <div className="container mx-auto px-4 py-16 max-w-3xl">
+            <div className="mb-10 space-y-4">
+              <TypographyH2>Components</TypographyH2>
+              <TypographyMuted className="text-base">
+                A comprehensive list of available components from the library.
+                {"We'll"} be adding more components in the future, so stay
+                tuned!
+              </TypographyMuted>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-4">
+              {shadcnComponents.map((component) => (
+                <Link
+                  key={component}
+                  href={`/components-page/${component
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")}`}
+                  className="group flex items-center p-2 -ml-2 rounded-md transition duration-200"
+                >
+                  <TypographyMedium className="text-foreground group-hover:text-foreground group-hover:underline underline-offset-4 transition-all duration-200">
+                    {component}
+                  </TypographyMedium>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </main>
       </div>
     </div>
   );
