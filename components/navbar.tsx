@@ -20,6 +20,12 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center gap-2">
             <Link
+              href="/"
+              className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
+            >
+              <TypographySmall>Home</TypographySmall>
+            </Link>
+            <Link
               href="/features"
               className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
