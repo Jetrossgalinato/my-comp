@@ -63,7 +63,9 @@ export function Navbar() {
 
           <div className="h-6 w-[1px] bg-foreground/20" />
           <button className="px-3 py-1 bg-foreground text-background rounded-md hover:opacity-90 transition-opacity">
-            <TypographySmall>Get Started</TypographySmall>
+            <TypographySmall className="text-background/90">
+              Get Started
+            </TypographySmall>
           </button>
         </div>
       </div>
