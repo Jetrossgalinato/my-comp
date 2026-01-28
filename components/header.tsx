@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 export function Header() {
   return (
     <div className="flex flex-col items-center justify-center px-4 h-100 w-full">
-      <TypographyH1 className="text-center">
+      <TypographyH1 className="text-center font-medium">
         Professional Web Design, Simplified
       </TypographyH1>
       <TypographyLead className="mt-6 text-center max-w-2xl">
