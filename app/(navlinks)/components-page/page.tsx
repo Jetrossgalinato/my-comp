@@ -5,58 +5,7 @@ import {
   TypographyMuted,
 } from "@/components/typography";
 import Link from "next/link";
-
-const shadcnComponents = [
-  "Accordion",
-  "Alert",
-  "Alert Dialog",
-  "Aspect Ratio",
-  "Avatar",
-  "Badge",
-  "Breadcrumb",
-  "Button",
-  "Calendar",
-  "Card",
-  "Carousel",
-  "Chart",
-  "Checkbox",
-  "Collapsible",
-  "Combobox",
-  "Command",
-  "Context Menu",
-  "Data Table",
-  "Date Picker",
-  "Dialog",
-  "Drawer",
-  "Dropdown Menu",
-  "Form",
-  "Hover Card",
-  "Input",
-  "Input OTP",
-  "Label",
-  "Menubar",
-  "Navigation Menu",
-  "Pagination",
-  "Popover",
-  "Progress",
-  "Radio Group",
-  "Resizable",
-  "Scroll Area",
-  "Select",
-  "Separator",
-  "Sheet",
-  "Skeleton",
-  "Slider",
-  "Sonner",
-  "Switch",
-  "Table",
-  "Tabs",
-  "Textarea",
-  "Toast",
-  "Toggle",
-  "Toggle Group",
-  "Tooltip",
-];
+import { shadcnComponents } from "./utils/componentList";
 
 export default function ComponentsPage() {
   return (
@@ -65,7 +14,7 @@ export default function ComponentsPage() {
       <div className="container mx-auto px-4 py-16 max-w-3xl">
         <div className="mb-10 space-y-4">
           <TypographyH2>Components</TypographyH2>
-          <TypographyMuted>
+          <TypographyMuted className="text-base">
             A comprehensive list of available components from the library.
           </TypographyMuted>
         </div>
