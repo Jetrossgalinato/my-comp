@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 import { Search, Power } from "lucide-react";
 import { TypographySmall } from "./typography";
+import { Button } from "./ui/button";
 
 export function Navbar() {
   return (
@@ -62,11 +63,9 @@ export function Navbar() {
           <ThemeToggle />
 
           <div className="h-6 w-[1px] bg-foreground/20" />
-          <button className="px-3 py-1 bg-foreground text-background rounded-md hover:opacity-90 transition-opacity">
-            <TypographySmall className="text-background/90">
-              Get Started
-            </TypographySmall>
-          </button>
+          <Button asChild>
+            <Link href="/login">Get Started</Link>
+          </Button>
         </div>
       </div>
     </nav>
