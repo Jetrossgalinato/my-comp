@@ -10,8 +10,8 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 shrink-0 hidden md:block border-r min-h-[calc(100vh-4rem)]">
-      <div className="h-full py-6 pr-6 lg:py-8">
+    <aside className="w-48 fixed top-16 bottom-0 overflow-y-auto">
+      <div className="h-full mt-8 pl-6 py-6 pr-6 lg:py-8">
         <TypographySmall className="font-semibold mb-4 px-2">
           Components
         </TypographySmall>
@@ -28,7 +28,7 @@ export function Sidebar() {
                 href={href}
                 className={cn(
                   "group flex w-full items-center rounded-md border border-transparent px-2 py-1 text-muted-foreground hover:underline",
-                  isActive && "font-medium text-foreground"
+                  isActive && "font-medium text-foreground",
                 )}
               >
                 {component}
