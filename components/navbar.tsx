@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 import { Search, Power } from "lucide-react";
 import { TypographySmall } from "./typography";
+import { Button } from "./ui/button";
 
 export function Navbar() {
   return (
@@ -20,22 +21,30 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center gap-2">
             <Link
+              href="/"
+              className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
+            >
+              <TypographySmall className="font-medium">Home</TypographySmall>
+            </Link>
+            <Link
               href="/features"
               className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
-              <TypographySmall>Features</TypographySmall>
+              <TypographySmall className="font-medium">
+                Features
+              </TypographySmall>
             </Link>
             <Link
               href="/about"
               className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
-              <TypographySmall>About</TypographySmall>
+              <TypographySmall className="font-medium">About</TypographySmall>
             </Link>
             <Link
               href="/contact"
               className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
-              <TypographySmall>Contact</TypographySmall>
+              <TypographySmall className="font-medium">Contact</TypographySmall>
             </Link>
           </div>
         </div>
@@ -56,9 +65,9 @@ export function Navbar() {
           <ThemeToggle />
 
           <div className="h-6 w-[1px] bg-foreground/20" />
-          <button className="px-3 py-1 bg-foreground text-background rounded-md hover:opacity-90 transition-opacity">
-            <TypographySmall>Get Started</TypographySmall>
-          </button>
+          <Button asChild>
+            <Link href="/login">Get Started</Link>
+          </Button>
         </div>
       </div>
     </nav>
