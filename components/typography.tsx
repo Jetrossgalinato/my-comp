@@ -150,7 +150,7 @@ export function TypographyLarge({
   className?: string;
 }) {
   return (
-    <div className={`text-lg font-semibold text-foreground/90 ${className}`}>
+    <div className={`text-lg font-medium text-foreground/90 ${className}`}>
       {children}
     </div>
   );
@@ -180,7 +180,7 @@ export function TypographyMuted({
   className?: string;
 }) {
   return (
-    <p className={`text-sm text-muted-foreground/90 ${className}`}>
+    <p className={`text-md text-muted-foreground/90 ${className}`}>
       {children}
     </p>
   );
