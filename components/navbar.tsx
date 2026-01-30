@@ -27,11 +27,11 @@ export function Navbar() {
               <TypographySmall className="font-medium">Home</TypographySmall>
             </Link>
             <Link
-              href="/features"
+              href="/components-page"
               className="px-3 py-1 rounded-md hover:bg-foreground/10 transition-colors duration-300"
             >
               <TypographySmall className="font-medium">
-                Features
+                Components
               </TypographySmall>
             </Link>
             <Link

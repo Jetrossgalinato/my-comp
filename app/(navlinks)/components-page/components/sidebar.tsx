@@ -17,21 +17,34 @@ export function Sidebar() {
         </TypographySmall>
         <div className="grid grid-flow-row auto-rows-max text-sm">
           {shadcnComponents.map((component) => {
-            const href = `/components-page/${component
+            const href = `/components-page/${component.title
               .toLowerCase()
               .replace(/\s+/g, "-")}`;
             const isActive = pathname === href;
 
+            if (component.disabled) {
+              return (
+                <span
+                  key={component.title}
+                  className={cn(
+                    "flex w-full items-center rounded-md border border-transparent px-2 py-1 text-muted-foreground opacity-50 cursor-not-allowed",
+                  )}
+                >
+                  {component.title}
+                </span>
+              );
+            }
+
             return (
               <Link
-                key={component}
+                key={component.title}
                 href={href}
                 className={cn(
                   "group flex w-full items-center rounded-md border border-transparent px-2 py-1 text-muted-foreground hover:underline",
                   isActive && "font-medium text-foreground",
                 )}
               >
-                {component}
+                {component.title}
               </Link>
             );
           })}
