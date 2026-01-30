@@ -27,19 +27,34 @@ export default function ComponentsPage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-4">
-              {shadcnComponents.map((component) => (
-                <Link
-                  key={component}
-                  href={`/components-page/${component
-                    .toLowerCase()
-                    .replace(/\s+/g, "-")}`}
-                  className="group flex items-center p-2 -ml-2 rounded-md transition duration-200"
-                >
-                  <TypographyMedium className="text-foreground group-hover:text-foreground group-hover:underline underline-offset-4 transition-all duration-200">
-                    {component}
-                  </TypographyMedium>
-                </Link>
-              ))}
+              {shadcnComponents.map((component) => {
+                if (component.disabled) {
+                  return (
+                    <div
+                      key={component.title}
+                      className="group flex items-center p-2 -ml-2 rounded-md transition duration-200 opacity-50 cursor-not-allowed"
+                    >
+                      <TypographyMedium className="text-muted-foreground">
+                        {component.title}
+                      </TypographyMedium>
+                    </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={component.title}
+                    href={`/components-page/${component.title
+                      .toLowerCase()
+                      .replace(/\s+/g, "-")}`}
+                    className="group flex items-center p-2 -ml-2 rounded-md transition duration-200"
+                  >
+                    <TypographyMedium className="text-foreground group-hover:text-foreground group-hover:underline underline-offset-4 transition-all duration-200">
+                      {component.title}
+                    </TypographyMedium>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </main>
