@@ -21,37 +21,80 @@ export function ResponsiveIframe({
 
     const doc = iframe.contentWindow.document;
 
-    // Reset default iframe styles
+    // 1. Set base href so relative links work correctly
+    const base = doc.createElement("base");
+    base.href = window.location.href;
+    doc.head.appendChild(base);
+
+    // 2. Reset default iframe styles
     doc.body.style.margin = "0";
     doc.body.style.padding = "0";
 
-    // Copy stylesheets and styles from main document
-    const updateStyles = () => {
-      Array.from(document.querySelectorAll('link[rel="stylesheet"]')).forEach(
-        (link) => {
-          doc.head.appendChild(link.cloneNode(true));
-        },
-      );
-      Array.from(document.querySelectorAll("style")).forEach((style) => {
-        doc.head.appendChild(style.cloneNode(true));
-      });
+    // 3. Function to copy a style/link node
+    const copyNode = (node: Node) => {
+      if (node instanceof Element) {
+        if (
+          node.tagName === "LINK" &&
+          (node as HTMLLinkElement).rel === "stylesheet"
+        ) {
+          const clone = node.cloneNode(true);
+          doc.head.appendChild(clone);
+        } else if (node.tagName === "STYLE") {
+          const style = node as HTMLStyleElement;
+          const clone = doc.createElement("style");
+          // Try to copy rules from sheet if available (covers CSS-in-JS/injected styles)
+          if (style.sheet) {
+            try {
+              const rules = Array.from(style.sheet.cssRules)
+                .map((rule) => rule.cssText)
+                .join("\n");
+              clone.textContent = rules;
+            } catch (e) {
+              // Fallback if CORS prevents accessing rules
+              clone.textContent = style.textContent;
+            }
+          } else {
+            clone.textContent = style.textContent;
+          }
+          doc.head.appendChild(clone);
+        }
+      }
     };
 
-    updateStyles();
+    // 4. Initial copy of existing styles
+    Array.from(document.head.children).forEach(copyNode);
 
-    // Sync body classes (for theme support)
-    const observer = new MutationObserver(() => {
+    // 5. Observe head for new styles (Next.js development mode injection)
+    const headObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach(copyNode);
+      });
+    });
+
+    headObserver.observe(document.head, { childList: true });
+
+    // 6. Sync body classes and theme
+    const syncTheme = () => {
+      const mainHtml = document.documentElement;
+      const iframeHtml = doc.documentElement;
+
+      iframeHtml.className = mainHtml.className;
+      iframeHtml.style.cssText = mainHtml.style.cssText;
+
       doc.body.className = document.body.className;
-      // Also sync specific style attributes if needed (e.g. background-color variables if set on body)
-      if (document.body.getAttribute("style")) {
-        doc.body.setAttribute(
-          "style",
-          document.body.getAttribute("style") || "",
-        );
-        // Re-apply margin reset just in case
-        doc.body.style.margin = "0";
-        doc.body.style.padding = "0";
-      }
+
+      // Force background to follow variables (essential if body background comes from :root variable)
+      doc.body.style.backgroundColor = "var(--background)";
+      doc.body.style.color = "var(--foreground)";
+    };
+
+    const observer = new MutationObserver(() => {
+      syncTheme();
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class", "style"],
     });
 
     observer.observe(document.body, {
@@ -60,11 +103,14 @@ export function ResponsiveIframe({
     });
 
     // Initial sync
-    doc.body.className = document.body.className;
+    syncTheme();
 
     setMountNode(doc.body);
 
-    return () => observer.disconnect();
+    return () => {
+      headObserver.disconnect();
+      observer.disconnect();
+    };
   }, []);
 
   // We wrap the portal content in a div to ensure it creates a new stacking context if needed,
