@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
-import { Eye, Code } from "lucide-react";
+import { Eye, Code, Monitor, Tablet, Smartphone } from "lucide-react";
+import { ResponsiveIframe } from "../../components/responsive-iframe";
 
 const navbarCode = `"use client";
 
@@ -84,43 +85,83 @@ export function Navbar() {
 
 export function NavbarPreview() {
   const [view, setView] = useState<"preview" | "code">("preview");
+  const [previewWidth, setPreviewWidth] = useState<string>("100%");
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-2">
-        <Button
-          variant={view === "preview" ? "default" : "outline"}
-          onClick={() => setView("preview")}
-          size="sm"
-          className="gap-2"
-        >
-          <Eye className="w-4 h-4" />
-          Preview
-        </Button>
-        <Button
-          variant={view === "code" ? "default" : "outline"}
-          onClick={() => setView("code")}
-          size="sm"
-          className="gap-2"
-        >
-          <Code className="w-4 h-4" />
-          Code
-        </Button>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Button
+            variant={view === "preview" ? "default" : "outline"}
+            onClick={() => setView("preview")}
+            size="sm"
+            className="gap-2"
+          >
+            <Eye className="w-4 h-4" />
+            Preview
+          </Button>
+          <Button
+            variant={view === "code" ? "default" : "outline"}
+            onClick={() => setView("code")}
+            size="sm"
+            className="gap-2"
+          >
+            <Code className="w-4 h-4" />
+            Code
+          </Button>
+        </div>
+
+        {view === "preview" && (
+          <div className="flex items-center gap-1 bg-muted/50 p-1 rounded-lg">
+            <Button
+              variant={previewWidth === "100%" ? "secondary" : "ghost"}
+              onClick={() => setPreviewWidth("100%")}
+              size="icon"
+              className="h-8 w-8"
+              title="Full Width"
+            >
+              <Monitor className="w-4 h-4" />
+            </Button>
+            <Button
+              variant={previewWidth === "768px" ? "secondary" : "ghost"}
+              onClick={() => setPreviewWidth("768px")}
+              size="icon"
+              className="h-8 w-8"
+              title="Tablet"
+            >
+              <Tablet className="w-4 h-4" />
+            </Button>
+            <Button
+              variant={previewWidth === "375px" ? "secondary" : "ghost"}
+              onClick={() => setPreviewWidth("375px")}
+              size="icon"
+              className="h-8 w-8"
+              title="Mobile"
+            >
+              <Smartphone className="w-4 h-4" />
+            </Button>
+          </div>
+        )}
       </div>
 
-      <div className="relative rounded-xl border bg-zinc-950 dark:bg-zinc-900 overflow-hidden shadow-sm h-[500px] transition-all duration-300">
+      <div className="relative rounded-xl border bg-zinc-950 dark:bg-zinc-900 overflow-hidden shadow-sm h-[500px] transition-all duration-300 flex flex-col">
         {view === "preview" ? (
-          <div className="relative w-full h-full bg-background/95 p-4 flex flex-col">
-            <div className="rounded-lg border overflow-y-auto shadow-md flex-1 bg-background relative">
-              <Navbar />
-              <div className="p-8 text-center text-muted-foreground">
-                <p>Page Content Scrollable Area</p>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <p key={i} className="my-8 opacity-20">
-                    Scroll content...
-                  </p>
-                ))}
-              </div>
+          <div className="flex-1 bg-zinc-100/50 dark:bg-zinc-950/50 p-4 overflow-hidden relative flex justify-center items-start">
+            <div
+              className="bg-background border rounded-lg overflow-hidden shadow-md transition-all duration-500 ease-in-out flex flex-col h-full relative"
+              style={{ width: previewWidth }}
+            >
+              <ResponsiveIframe className="w-full h-full">
+                <Navbar />
+                <div className="p-8 text-center text-muted-foreground">
+                  <p>Page Content Scrollable Area</p>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <p key={i} className="my-8 opacity-20">
+                      Scroll content...
+                    </p>
+                  ))}
+                </div>
+              </ResponsiveIframe>
             </div>
           </div>
         ) : (
