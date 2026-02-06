@@ -3,7 +3,15 @@
 import { useState } from "react";
 import { NavbarCentered } from "@/components/navbar-centered";
 import { Button } from "@/components/ui/button";
-import { Eye, Code, Monitor, Tablet, Smartphone } from "lucide-react";
+import {
+  Eye,
+  Code,
+  Monitor,
+  Tablet,
+  Smartphone,
+  Check,
+  Copy,
+} from "lucide-react";
 import { ResponsiveIframe } from "../../components/responsive-iframe";
 
 const navbarCenteredCode = `"use client";
@@ -71,6 +79,17 @@ export function NavbarCentered({ className }: { className?: string }) {
 export function NavbarPillShaped() {
   const [view, setView] = useState<"preview" | "code">("preview");
   const [previewWidth, setPreviewWidth] = useState<string>("100%");
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(navbarCenteredCode);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy code: ", err);
+    }
+  };
 
   return (
     <div className="space-y-4">
@@ -150,10 +169,24 @@ export function NavbarPillShaped() {
             </div>
           </div>
         ) : (
-          <div className="p-4 overflow-auto h-full w-full text-sm">
-            <pre className="text-zinc-50 font-mono">
-              <code>{navbarCenteredCode}</code>
-            </pre>
+          <div className="relative h-full w-full">
+            <Button
+              variant="outline"
+              size="icon"
+              className="absolute top-4 right-4 h-8 w-8 z-10 bg-zinc-800 text-zinc-100 hover:bg-zinc-700 hover:text-white border-zinc-700"
+              onClick={handleCopy}
+            >
+              {isCopied ? (
+                <Check className="h-4 w-4 text-green-400" />
+              ) : (
+                <Copy className="h-4 w-4" />
+              )}
+            </Button>
+            <div className="p-4 overflow-auto h-full w-full text-sm">
+              <pre className="text-zinc-50 font-mono">
+                <code>{navbarCenteredCode}</code>
+              </pre>
+            </div>
           </div>
         )}
       </div>
